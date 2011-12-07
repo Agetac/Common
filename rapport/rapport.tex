@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{amsfonts}
+\usepackage{pgf}
+\usepackage[utf8]{inputenc}
+\title{AGETAC}
+\date{20/12/2011}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Présentation générale}
+\subsection{Le système existant}
+Actuellement, les interventions des sapeurs pompiers sont gérées depuis le CODIS\footnote{Centre Opérationnel Départemental d'Incendie et de Secours} par le système ARTEMIS\footnote{Système d’alerte et d’aide à la décision des services d’urgence}.\\
+Ce système équipe une quarantaine de départements en France métropolitaine. Il intègre notamment des fonctions de gestion et d’affectation automatique des ressources (véhicules et personnels) tout en assurant leur géo-localisation en temps réel.\\
+Cependant, ARTEMIS reste limité car il ne permet pas de gérer les communications entre les différents acteurs intervenant sur un sinistre. Celles-ci sont effectuées à l’oral via des canaux radios et des tableaux blancs.
+\subsection{Le projet AGETAC}
+Notre projet consiste à concevoir un système permettant d'améliorer le travail des agents intervenants en cas de sinistre.\\
+Aussi, nous avons choisi un support et une technologie (libre, performante et abordable) de pointe afin de répondre aux objectifs qui nous ont été fixés et que nous détaillerons par la suite.\\
+Il s’agit de développer un système client serveur avec une application sur tablette tactile qui permettra aux pompiers en intervention de gérer efficacement et rapidement les différentes situations.
+\subsection{Organisation du travail}
+Pour une meilleure gestion des tâches, nous nous sommes répartis en deux groupes distincts: le premier s'occupant de la conception du serveur et le second de celle du client.\\
+Par ailleurs, nous avons veillé à ce que tous les participants du projet aient une responsabilité valorisante.
+\section{Objectifs}
+\subsection*{Améliorer la gestion de la situation tactique d'une intervention}
+Dans le système existant, plusieurs problèmes se présentent aux agents:
+\begin{itemize}
+\item Les outils de descriptions, à savoir les tableaux blancs, sont peu mobiles, encombrants et manquent parfois de précision.
+\item Ils ne permettent pas la conservation d'historique.
+\item Ils ne permettent pas une bonne gestion des moyens.
+\end{itemize}
+Agetac se propose de répondre à ces problèmes de la façon suivante :
+\begin{itemize}
+\item Le nouveau système se déploie sur un support mobile, léger et bénéficiant de la précision liée à l'outil informatique.
+\item La mise en oeuvre du système permet une conservation de l'historique et une vue en temps réel de l'évolution de la SITAC\footnote{SItuation TACtique: plan permettant de résumer  la situation en cours}.
+\item Grâce à l'application la gestion des moyens est facilitée ??
+\end{itemize}
+\section{Les caractéristiques du projet}
+\subsection{Support d'utilisation}
+Le support de l’application AGETAC est une tablette tactile. Toutes les tablettes communiqueront avec un même serveur, ce qui permettra aux pompiers présents, ainsi qu’à ceux restés au CODIS, d’informer et d’être informés en temps réel du déroulement de l’intervention. 
+\subsection{Technologies employées}
+Les technologies employées sur ce projet sont :\\
+JAVA JEE pour la conception du serveur et Android pour la conception de l’application  client. Les deux communiquant via le framework RESTlet.
+\subsection{Collaborations}
+Le projet est mené en collaboration avec l’équipe de recherche Triskell, ainsi que le capitaine Regis DEMAY des Sapeurs Pompiers d’Ille et Villaine.
+\section{Avantages et bénéfices}
+\section*{Conclusion}
+\section*{Bibliographie}
+Le guide de gestion de moyens de réponse opérationnelle, Nöel  PLOUZEAU\\
+Le guide de gestion de chaînes de commandement, santé et soutien, Nöel  PLOUZEAU\\
+Présentation de la technologie CXF, Nöel PLOUZEAU\\
+Organisation AGETAC, Nöel  PLOUZEAU\\
+Codes sinistres, Capitaine Regis DEMAY\\
+\end{document}
