@@ -5,14 +5,19 @@
 \usepackage{stmaryrd}
 \usepackage{amsfonts}
 \usepackage[french]{babel}
-
+\usepackage{color}
 \usepackage[utf8]{inputenc}
-\title{Rapport d'analyse et de conception\\Projet AGETAC}
-\date{20/12/2011}
 
 \newcommand{\todo}[1]{\textcolor{green}{#1}}
 
+\title{Rapport d'analyse et de conception\\Projet AGETAC}
+\date{20/12/2011}
+
+
 \begin{document}
+
+
+
 
 \maketitle
 
@@ -35,6 +40,18 @@ Ce rapport commencera par analyser les fonctionnalités attendues au moyen de di
 \section{Diagrammes de séquence}
 
 \section{Stratégie de développement}
+
+Pour le développement de ce projet, nous avons décidé de suivre un cycle en spirale fonctionnant par itérations. Cette méthode est une variante du cycle de développement en V avec une meilleure gestion des risques. Chaque itération comporte 4 étapes :
+\begin{description}
+ \item[Analyse] Analyse des besoins et des risques
+ \item[Conception] Diagrammes UML détaillés
+ \item[Codage] Développement du prototype et tests unitaires
+ \item[Intégration] Installation du programme sur le support, tests d’intégration
+\end{description}
+
+Chaque itération voit la création d’un prototype qui sera présenté au client. Les retours de celui-ci permettront de démarrer une autre itération en corrigeant les problèmes rencontrés dans le précédent prototype et lui apporter de nouvelles fonctionnalités plus évoluées.
+
+\todo{Inclure diagramme de Gantt}
 
 \section*{Conclusion}
 A la fin de la première partie du projet, nous avons donc mis en place une bonne partie de l’analyse et de la conception d’une première version de notre logiciel.
