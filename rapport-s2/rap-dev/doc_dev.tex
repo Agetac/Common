@@ -2,7 +2,32 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass{article}
 \usepackage{listings}
-\lstset{ language = Java}
+
+\lstset{
+         basicstyle=\footnotesize\ttfamily,
+         numberstyle=\tiny,
+         numbersep=5pt,       
+         tabsize=2,                  
+         extendedchars=true,    
+         breaklines=true,            
+         keywordstyle=\color{red},
+%    		frame=b,         
+         stringstyle=\color{white}\ttfamily, 
+         showspaces=false,           
+         showtabs=false,             
+         xleftmargin=17pt,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt,
+         showstringspaces=false   
+ }
+ \lstloadlanguages{Java}
+
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+
 \usepackage[utf8]{inputenc}
 \usepackage[francais]{babel}
 \usepackage[T1]{fontenc}
@@ -164,17 +189,18 @@ laquelle est associée une URI, qui sera envoyée au serveur. The idea was to ha
 completely transparent JSON (de)serialisation by using the Automatic 
 Conversion extension of the restlet framework. For example, 
 using this method, the client can do the following to retrieve a vehicle demand :
+%
+%\begin{lstlisting}
+%ClientResource clientResource = new ClientResource("some_url");
+%try {
+%  VehicleDemandsResource vehicleDemandsResource = 
+%     clientResource.wrap(VehicleDemandsResource.class);
+%  return  vehicleDemandsResource.retrieve();
+%} finally {
+%  clientResource.release();
+%}
+%\end{lstlisting}
 
-\begin{lstlisting}
-ClientResource clientResource = new ClientResource("some_url");
-try {
-  VehicleDemandsResource vehicleDemandsResource = 
-     clientResource.wrap(VehicleDemandsResource.class);
-  return  vehicleDemandsResource.retrieve();
-} finally {
-  clientResource.release();
-}
-\end{lstlisting}
 
 However, using this method to (de)serialize collections of objects 
 just doesn't work (so well). Let's take for instance the following scenario: Collection\texttt{<}InterventionDTO\texttt{>} 
@@ -195,21 +221,22 @@ of Restlet. Instead, we use Jackson directly and a technique to pass full generi
 type information. For example, a call to the method to get the list of interventions 
 is implemented the following way :
 
-%\begin{lstlisting}
-%try {
-%  Representation repr = clientResource.get();
-%  TypeReference<Collection<InterventionDTO>> tr = 
-%      new TypeReference<Collection<InterventionDTO>>();
-%  ObjectMapper mapper = new ObjectMapper();
-%  Collection<InterventionDTO> col = null;
-%  col = mapper.readValue(repr.getStream(), tr);
-%  return col;
-%} catch (Exception e) {
-%    e.printStackTrace();
-%} finally {
-%      clientResource.release();
-%}
-%\end{lstlisting}
+\begin{lstlisting}
+try {
+  Representation repr = clientResource.get();
+  TypeReference<Collection<InterventionDTO>> tr = 
+      new TypeReference<Collection<InterventionDTO>>();
+  ObjectMapper mapper = new ObjectMapper();
+  Collection<InterventionDTO> col = null;
+  col = mapper.readValue(repr.getStream(), tr);
+  return col;
+} catch (Exception e) {
+    e.printStackTrace();
+} finally {
+      clientResource.release();
+}
+\end{lstlisting}
+
 
 \subsection{Client}
 
