@@ -1,9 +1,13 @@
 %&LaTeX
 % !TEX encoding = UTF-8 Unicode
 \documentclass{article}
+\usepackage{listings}
+\lstset{ language = Java}
 \usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor = blue]{hyperref}
 
 \usepackage{graphicx}
 \usepackage{ulem}
@@ -15,335 +19,201 @@
 \definecolor{color02}{rgb}{0.40,0.40,0.40}
 \definecolor{color03}{rgb}{0.07,0.33,0.80}
 
+
+
+\title{\Huge{AGETAC\\
+Aide à la GEstion TACtique\\}
+\huge{{\color{color02} \textit{Document de développement}}}}
+
+\date{Mai 2012}
+\author{Projet Agetac - Université de Rennes 1\\
+Encadré par Noël Plouzeau}
+
+
+
 \begin{document}
-\baselineskip=13pt
-{\color{color01} Document de développement}
 
-{\color{color01} /}
 
-\begin{center}
-{\Huge {\color{color01} \textbf{AGETAC}}}
+\maketitle
+\tableofcontents
+\newpage
 
-{\Huge {\color{color01} \textbf{Aide à la GEstion TACtique}}}
 
-\vspace{41pt}
-{\huge {\color{color02} \textit{Document de développement}}}
-\end{center}
+\section{Introduction}
 
-\vspace{110pt}
-{\color{color01} Documentation de développement. Ce manuel doit permettre à tout 
-développeur de naviguer dans le code du logiciel produit. Il doit comporter une 
-vue d'ensemble de l'application, expliquer son découpage en classes et permettre 
-d'identifier le rôle de chaque classe dans l'application.}
+\subsection{Présentation du document}
 
-\vspace{13pt}
-{\color{color01} exemple : }{\color{color03} \emph{manuel\_utilisateur\_technique.pdf}}
-
-\vspace{220pt}
-\leftskip=18pt
-{\color{color03} \emph{Introduction}}
-
-\leftskip=36pt
-{\color{color03} \emph{Présentation du document}}
-
-{\color{color03} \emph{GitHub}}
-
-\leftskip=18pt
-{\color{color03} \emph{Installer l'environnement}}
-
-\leftskip=36pt
-{\color{color03} \emph{Java}}
-
-{\color{color03} \emph{Android}}
-
-{\color{color03} \emph{Les librairies utilisées}}
-
-\leftskip=18pt
-{\color{color03} \emph{Structure du projet / Rôle des classes}}
-
-\leftskip=36pt
-{\color{color03} \emph{Model}}
-
-\leftskip=54pt
-{\color{color03} \emph{Diagramme de classe}}
-
-{\color{color03} \emph{Description}}
-
-\leftskip=36pt
-{\color{color03} \emph{Client}}
-
-\leftskip=54pt
-{\color{color03} \emph{Diagramme de classe}}
-
-{\color{color03} \emph{Description}}
-
-\leftskip=36pt
-{\color{color03} \emph{Serveur}}
-
-\leftskip=54pt
-{\color{color03} \emph{Diagramme de classe}}
-
-{\color{color03} \emph{Description}}
-
-\leftskip=18pt
-{\color{color03} \emph{Fonctionnement\label{h.llgn2xg50s04}\label{h.th5huzux8wvr}}}
-
-\vspace{272pt}
-\section*{{\LARGE {\color{color01} \textbf{Introduction\label{h.c625vjascgkw}}}}}
-
-\vspace{18pt}
-\subsection*{{\large {\color{color01} \textbf{Présentation du document}}}}
-
-\leftskip=0pt
-{\color{color01} Le présent document s'adresse aux futurs développeurs ou chargés 
-de maintenance de}
-
-{\color{color01} Agetac. Il présente de manière détaillée la procédure à 
+Le présent document s'adresse aux futurs développeurs ou chargés 
+de maintenance de Agetac. Il présente de manière détaillée la procédure à 
 suivre pour pouvoir récupérer les fichiers sources du projet, explique brièvement 
 l'architecture des fichiers et enfin il montre comment modifier ou ajouter des 
-fonctionnalités.\label{h.htfanscfvw9j}}
+fonctionnalités.
 
-\vspace{31pt}
-\subsection*{{\large {\color{color01} \textbf{GitHub}}}}
+\subsection{GitHub}
 
-{\color{color01} Dans tout projet conséquent, la gestion des documents, des versions 
-et des}
+Dans tout projet conséquent, la gestion des documents, des versions 
+et des mises à jour posent souvent problème. Dès la mise en place 
+du projet Agetac, nous avons choisi d'utiliser GitHub, un service qui permet d'héberger 
+des projets libres pour gérer les sources et les documents relatifs au projet.
 
-{\color{color01} mises à jour posent souvent problème. Dès la mise en place 
-du projet Agetac, nous}
+Tous les documents, sources, et exécutables sont téléchargeables 
+à cette adresse : \\ \url{https://github.com/Agetac}
 
-{\color{color01} avons choisi d'utiliser GitHub, un service qui permet d'héberger 
-des projets libres pour gérer les sources et les documents relatifs au projet.}
+\section{Installer l'environnement}
 
-\vspace{13pt}
-{\color{color01} Tous les documents, sources, et exécutables sont téléchargeables 
-à cette adresse : }
 
-{\color{color03} \emph{https://github.com/Agetac\label{h.3j9knedtu23x}}}
+\subsection{Java}
 
-\vspace{24pt}
-\section*{{\LARGE {\color{color01} \textbf{Installer l'environnement\label{h.9koebhiq5beh}}}}}
+Le projet a été exclusivement développé dans le langage Java. 
+Le choix de ce langage a été fait depuis le départ pour des raisons de portabilité. Java 
+est également un langage libre, dont la communauté est très active sur Internet.
 
-\vspace{18pt}
-\subsection*{{\large {\color{color01} \textbf{Java}}}}
 
-{\color{color01} Le projet a été exclusivement développé dans le langage Java. 
-Le choix de ce langage a été}
+\subsection{Android}
 
-{\color{color01} fait depuis le départ pour des raisons de portabilité. Java 
-est également un langage libre, dont la communauté est très active sur Internet.\label{h.1fkabj68oiz3}}
+Le projet à été développé pour fonctionner sur tablette tactile 
+Android utilisant la version 3.0.
 
-\vspace{18pt}
-\subsection*{{\large {\color{color01} \textbf{Android}}}}
 
-{\color{color01} Le projet à été développé pour fonctionner sur tablette tactile 
-Android utilisant la version 3.0. \label{h.z07mtcu37998}}
+\subsection{Les librairies utilisées}
 
-\vspace{18pt}
-\subsection*{{\large {\color{color01} \textbf{Les librairies utilisées}}}}
+\subsubsection{Jackson}
 
-\leftskip=36pt
-\parindent=-18pt
-{\color{color01} \textbf{Jackson}}
-
-\leftskip=0pt
-\parindent=0pt
-{\color{color01} Nous avons intégré à Restlet l'extension Jackson pour la communication 
+Nous avons intégré à Restlet l'extension Jackson pour la communication 
 entre le serveur et les tablettes. Jackson est une librairie très rapide qui permet 
 de sérialiser des objets Java en JSON de façon standard, et inversement de convertir 
-du JSON en objets Java.}
+du JSON en objets Java.
 
-\leftskip=36pt
-\parindent=-18pt
-{\color{color01} \textbf{DataNucleus  }}
+\subsubsection{DataNucleus}
 
-\leftskip=0pt
-\parindent=0pt
-{\color{color01} Il s'agit d'un projet open-source qui offre des librairies permettant 
+Il s'agit d'un projet open-source qui offre des librairies permettant 
 l'accès aux données utilisant des API standards pour un grand nombre de banque 
 de données. Nous utilisons donc DataNucleus pour gérer notre modèle de persistance 
-qui est JDO (Java Data Object) avec notre système de gestion de données.}
+qui est JDO (Java Data Object) avec notre système de gestion de données.
 
-\leftskip=36pt
-\parindent=-18pt
-{\color{color01} \textbf{HSQLDB}}
+\subsubsection{HSQLDB}
 
-\leftskip=0pt
-\parindent=0pt
-{\color{color01} Cette librairie nous permet de manipuler notre système de gestion 
+Cette librairie nous permet de manipuler notre système de gestion 
 de base de données  relationnelles (RDBMS - Relational DataBase Management System 
-) Java du même nom.}
+) Java du même nom.
 
-\leftskip=36pt
-\parindent=-18pt
-{\color{color01} \textbf{ModelMapper}}
+\subsubsection{ModelMapper}
 
-\leftskip=0pt
-\parindent=0pt
-{\color{color01} ModelMapper est un framework de mapping d'objet intelligent qui 
+ModelMapper est un framework de mapping d'objet intelligent qui 
 élimine le besoin de mapper les objets manuellement les uns aux autres dans la 
-persistance.}
+persistance.
 
-\leftskip=36pt
-\parindent=-18pt
-{\color{color01} \textbf{HttpClient et HttpCore de Apache}}
+\subsubsection{HttpClient et HttpCore de Apache}
 
-\leftskip=0pt
-\parindent=0pt
-{\color{color01} Ces librairies nous offrent un support plus robuste du protocole 
+Ces librairies nous offrent un support plus robuste du protocole 
 HTTP que les packages Java basiques. With Restlet's default HTTP client we had 
 problems getting the Client/Server communication work. It seems that either Android 
 or the Restlet's default HTTP client cannot handle correctly the chunked transfer 
 encoding, which is enabled by default in Restlet's default HTTP client (and there 
-is no obvious way to disable it!).\label{h.o7n0iqk4jgxd}}
+is no obvious way to disable it!).
 
-\vspace{24pt}
-\section*{{\LARGE {\color{color01} \textbf{Structure du projet / Rôle des classes\label{h.kqxmym113n0g}}}}}
+\section{Structure du projet / Rôle des classes}
 
-\vspace{18pt}
-\subsection*{{\large {\color{color01} \textbf{Model\label{h.rdjs6g2w91nu}}}}}
+\subsection{Model}
 
-\vspace{14pt}
-\subsubsection*{{\color{color02} \textbf{Diagramme de classe}}}
+
+\subsubsection{Diagramme de classe}
 
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=494pt, height=521pt]{doc_dev-fig001.png}
 \caption{This should be the caption for \texttt{doc\_dev-fig001.png}.}
 \end{center}
-\end{figure}\label{h.pb7kurfacmpb}
+\end{figure}
 
-\vspace{27pt}
-\subsubsection*{{\color{color02} \textbf{Description\label{h.ggq4v6pv3yg7}}}}
+\subsubsection{Description}
 
-\vspace{13pt}
-{\color{color01} \textbf{Package resources}}
+\paragraph{Package resources :}
 
-{\color{color01} Contient toutes les interfaces des ressources ainsi que les classes 
-du package ``resources''que le serveur doit implémenter.}
+Contient toutes les interfaces des ressources ainsi que les classes 
+du package ``resources''que le serveur doit implémenter.
 
-\vspace{13pt}
-{\color{color01} \textbf{Package observer}}
+\paragraph{Package observer :}
 
-{\color{color01} Contient la classe MyObservable qui étend java.util.Observable 
-et qui rend publique la méthode setChanged().}
+Contient la classe MyObservable qui étend java.util.Observable 
+et qui rend publique la méthode setChanged().
 
-{\color{color01} L'intérêt du pattern Observer est de prévenir les classes observatrices 
+L'intérêt du pattern Observer est de prévenir les classes observatrices 
 via un « signal » d'un changement sur les classes observées afin d'effectuer 
-une action relative à ce changement.}
+une action relative à ce changement.
 
-{\color{color01} Ce pattern est utilisé principalement dans le client pour mettre 
-à jour les données.}
+Ce pattern est utilisé principalement dans le client pour mettre 
+à jour les données.
 
-\vspace{13pt}
-{\color{color01} \textbf{Package dto}}
+\paragraph{Package dto :}
 
-{\color{color01} Ces classes représentent des ressources, « typeDTO.java », 
+Ces classes représentent des ressources, « typeDTO.java », 
 qui sont amenées à être échangées entre la tablette cliente et le serveur. 
 Ce sont ces objets qui transitent sur le réseau. We don't send the ORM entities 
 down the wire because, unless we're very careful, there is a risk to pull in a 
 lot more of the reachable object tree than what we would like, when Jackson serializes 
-an ORM entity (in order to make it pass through the network).}
+an ORM entity (in order to make it pass through the network).
 
-\vspace{13pt}
-{\color{color01} \textbf{Package client}}
+\paragraph{Package client :}
 
-{\color{color01} « AgetacClient.java » est une classe ``protocolaire''connaissant 
+« AgetacClient.java » est une classe ``protocolaire''connaissant 
 les opérations GET, POST, PUT à effectuer sur les différentes ressources (telle 
 une demande de véhicule ou l'ajout d'une victime). Les fonctions associées effectuent 
 les opérations REST correspondantes : elles créent une ressource typeDTO, à 
 laquelle est associée une URI, qui sera envoyée au serveur. The idea was to have 
-completely transparent JSON (de)serialisation by using the }{\color{color01} \textit{Automatic 
-Conversion}}{\color{color01}  extension of the restlet framework. For example, 
-using this method, the client can do the following to retrieve a vehicle demand:}
+completely transparent JSON (de)serialisation by using the Automatic 
+Conversion extension of the restlet framework. For example, 
+using this method, the client can do the following to retrieve a vehicle demand :
 
-\vspace{13pt}
-{\color{color01} ClientResource clientResource = new ClientResource(\texttt{"}someurl\texttt{"});}
+\begin{lstlisting}
+ClientResource clientResource = new ClientResource("some_url");
+try {
+  VehicleDemandsResource vehicleDemandsResource = 
+     clientResource.wrap(VehicleDemandsResource.class);
+  return  vehicleDemandsResource.retrieve();
+} finally {
+  clientResource.release();
+}
+\end{lstlisting}
 
-{\color{color01} try \{}
-
-{\color{color01} VehicleDemandsResource vehicleDemandsResource = clientResource.wrap(VehicleDemandsResource.class);}
-
-{\color{color01} return  vehicleDemandsResource.retrieve();}
-
-{\color{color01} \} finally \{}
-
-{\color{color01} clientResource.release();}
-
-{\color{color01} \}}
-
-\vspace{13pt}
-{\color{color01} However, using this method to (de)serialize collections of objects 
+However, using this method to (de)serialize collections of objects 
 just doesn't work (so well). Let's take for instance the following scenario: Collection\texttt{<}InterventionDTO\texttt{>} 
 on server -\texttt{>} JSON/Restlet -\texttt{>} Collection\texttt{<}LinkedHashMap\texttt{>} 
 on the client. That is, server side we want to serialize a collection of InterventionDTOs 
 to send to the client. Passing through Restlets Automatic Conversion technique, 
-the client finally gets a Collection\texttt{<}InterventionDTO\texttt{>}.}
+the client finally gets a Collection\texttt{<}InterventionDTO\texttt{>}.
 
-\vspace{13pt}
-{\color{color01} Restlet's JacksonRepresentation uses mapper.readValue(representation, 
+Restlet's JacksonRepresentation uses mapper.readValue(representation, 
 targetType.class) to do the work, but type parameters are erased (!), so the return 
 type becomes Collection.class, and the call becomes mapper.readValue(representation, 
 Collection.class). Jackson does the it can in that case; the serialized InterventionDTO 
-looks like a map.}
+looks like a map.
 
-\vspace{13pt}
-{\color{color01} To avoid problems with type erasure, for example for calls that 
+To avoid problems with type erasure, for example for calls that 
 return typed Collections of objects, we don't use the Automatic Conversion feature 
 of Restlet. Instead, we use Jackson directly and a technique to pass full generics 
 type information. For example, a call to the method to get the list of interventions 
-is implemented the following way:}
+is implemented the following way :
 
-\vspace{13pt}
-{\color{color01} try \{}
+%\begin{lstlisting}
+%try {
+%  Representation repr = clientResource.get();
+%  TypeReference<Collection<InterventionDTO>> tr = 
+%      new TypeReference<Collection<InterventionDTO>>();
+%  ObjectMapper mapper = new ObjectMapper();
+%  Collection<InterventionDTO> col = null;
+%  col = mapper.readValue(repr.getStream(), tr);
+%  return col;
+%} catch (Exception e) {
+%    e.printStackTrace();
+%} finally {
+%      clientResource.release();
+%}
+%\end{lstlisting}
 
-{\color{color01} Representation repr = clientResource.get();}
+\subsection{Client}
 
-\vspace{13pt}
-{\color{color01} TypeReference\texttt{<}Collection\texttt{<}InterventionDTO\texttt{>}\texttt{>} 
-tr = new TypeReference\texttt{<}Collection\texttt{<}InterventionDTO\texttt{>}\texttt{>}() 
-\{}
-
-\parindent=54pt
-{\color{color01} \};}
-
-\parindent=0pt
-{\color{color01} ObjectMapper mapper = new ObjectMapper();}
-
-{\color{color01} Collection\texttt{<}InterventionDTO\texttt{>} col = null;}
-
-{\color{color01} try \{}
-
-{\color{color01} col = mapper.readValue(repr.getStream(), tr);}
-
-\parindent=54pt
-{\color{color01} \} catch (Exception e) \{}
-
-\parindent=0pt
-{\color{color01} e.printStackTrace();}
-
-\parindent=54pt
-{\color{color01} \}}
-
-\vspace{13pt}
-\parindent=0pt
-{\color{color01} return col;}
-
-\vspace{13pt}
-\parindent=36pt
-{\color{color01} \} finally \{}
-
-\parindent=0pt
-{\color{color01} clientResource.release();}
-
-\parindent=36pt
-{\color{color01} \}\label{h.5bosr7k47ipl}}
-
-\vspace{31pt}
-\subsection*{{\large {\color{color01} \textbf{Client\label{h.28dwwk54l87g}}}}}
-
-\vspace{14pt}
-\subsubsection*{{\color{color02} \textbf{Diagramme de classe}}}
+\subsubsection{Diagramme de classe}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -352,24 +222,15 @@ tr = new TypeReference\texttt{<}Collection\texttt{<}InterventionDTO\texttt{>}\te
 \end{center}
 \end{figure}
 
-\vspace{13pt}
+
 \parindent=0pt
-{\color{color01} Le }{\color{color01} \textbf{Controller}}{\color{color01}  est 
-en relation avec les différentes }{\color{color01} \textbf{XXXActivity}}{\color{color01}  
-et le moteur de l'application.}
+Le \textbf{Controller} est en relation avec les différentes \textbf{XXXActivity} et le moteur de l'application.
 
-{\color{color01} C'est un singleton qui observe les changements des différentes 
-Activity et qui appel en conséquence le contrôleur associé à l'activité.}
+C'est un singleton qui observe les changements des différentes Activity et qui appel en conséquence le contrôleur associé à l'activité.
 
-{\color{color01} Le contrôleur observe aussi le moteur }{\color{color01} \textbf{InterventionEngine}}{\color{color01} . 
-Lorsque celui-ci se met à jour, le contrôleur se charge d'appeler la méthode 
-}{\color{color01} \textbf{update()}}{\color{color01}  propre à l'activité de 
-type }{\color{color01} \textbf{ITabActivity }}{\color{color01} courante.}
+Le contrôleur observe aussi le moteur \textbf{InterventionEngine.} Lorsque celui-ci se met à jour, le contrôleur se charge d'appeler la méthode \textbf{update()} propre à l'activité de type \textbf{ITabActivity} courante.
 
-{\color{color01} Chaque sous-contrôleur }{\color{color01} \textbf{ISubController}}{\color{color01}  
-correspond à une }{\color{color01} \textbf{ITabActivity}}{\color{color01}  et 
-sait comment traiter les informations en fonction de l'état de la variable de 
-type }{\color{color01} \textbf{ActionFlag}}{\color{color01} .}
+Chaque sous-contrôleur \textbf{ISubController} correspond à une \textbf{ITabActivity} et sait comment traiter les informations en fonction de l'état de la variable de type \textbf{ActionFlag.}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -378,13 +239,12 @@ type }{\color{color01} \textbf{ActionFlag}}{\color{color01} .}
 \end{center}
 \end{figure}
 
-\vspace{13pt}
-{\color{color01} Les Activity forment l'interface graphique de l'application. Elles 
+
+Les Activity forment l'interface graphique de l'application. Elles 
 jouent aussi le rôle de ``listener''en réagissant aux interactions de l'utilisateur. 
-Aussi elles définissent un }{\color{color01} \textbf{ActionFlag}}{\color{color01}  
+Aussi elles définissent un \textbf{ActionFlag}
 approprié pour l'action en cours (ajout, suppression, update, ..., ainsi qu'une 
-}{\color{color01} \textbf{IEntity}}{\color{color01}  courante (touchedEntity). 
-Enfin, elles notifient à leur observateur quand leur état a changé.}
+\textbf{IEntity} courante (touchedEntity). Enfin, elles notifient à leur observateur quand leur état a changé.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -393,20 +253,20 @@ Enfin, elles notifient à leur observateur quand leur état a changé.}
 \end{center}
 \end{figure}
 
-\vspace{13pt}
-{\color{color01} Les }{\color{color01} \textbf{IMenuFragment}}{\color{color01}  
-sont des menus affichés dans l'onglet SITAC. On a deux menus :}
+Les \textbf{IMenuFragment} sont des menus affichés dans l'onglet SITAC. On a deux menus : 
 
-\parindent=18pt
-{\color{color01} - OpenedMenuFragment : menu ouvert sur la SITAC}
+\begin{itemize}
+\item OpenedMenuFragment : menu ouvert sur la SITAC.
 
-{\color{color01} - HiddenMenuFragment : menu fermé sur la SITAC}
+\item HiddenMenuFragment : menu fermé sur la SITAC.
+
+\end{itemize}
 
 \parindent=0pt
-{\color{color01} Les menus sont capables de notifier les interactions de l'utilisateur 
-via l'interface }{\color{color01} \textbf{IOnMenuEventListener}}{\color{color01} . 
+{ Les menus sont capables de notifier les interactions de l'utilisateur 
+via l'interface }{ \textbf{IOnMenuEventListener}}{ . 
 Si une classe hérite de cette interface, et s'enregistre comme ``listener''d'un 
-}{\color{color01} \textbf{IMenuFragment}}{\color{color01} , alors elle recevra 
+}{ \textbf{IMenuFragment}}{ , alors elle recevra 
 des events en fonction des actions faites sur le menu.}
 
 \begin{figure}[htbp]
@@ -423,9 +283,8 @@ des events en fonction des actions faites sur le menu.}
 \end{center}
 \end{figure}
 
-\vspace{41pt}
-{\color{color01} Pattern Command classique permettant de réifier les actions ``client/serveur''possibles 
-au sein de l'application.}
+Pattern Command classique permettant de réifier les actions ``client/serveur''possibles 
+au sein de l'application.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -435,18 +294,18 @@ au sein de l'application.}
 \end{figure}
 
 \vspace{13pt}
-{\color{color01} Les }{\color{color01} \textbf{Handler}}{\color{color01}  prennent 
-des }{\color{color01} \textbf{IEntity}}{\color{color01}  (côté client donc) et 
+{ Les }{ \textbf{Handler}}{  prennent 
+des }{ \textbf{IEntity}}{  (côté client donc) et 
 se chargent d'effectuer les modifications nécessaires pour mettre à jour la liste 
 d'entités côté client et côté serveur.}
 
-{\color{color01} Ils vont par exemple se charger de supprimer un véhicule côté 
-client et donc d'envoyer le message de suppression au serveur via la classe }{\color{color01} \textbf{AgetacClient}}{\color{color01}  
-du model.}
+Ils vont par exemple se charger de supprimer un véhicule côté 
+client et donc d'envoyer le message de suppression au serveur via la classe \textbf{AgetacClient}
+du model.
 
-{\color{color01} Le fait de passer dans un handler va automatiquement déclencher 
+Le fait de passer dans un handler va automatiquement déclencher 
 une mise à jour côté client de l'interface graphique. Car l'état du moteur 
-va changer en fonction de l'action à prendre en charge.}
+va changer en fonction de l'action à prendre en charge.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -455,18 +314,15 @@ va changer en fonction de l'action à prendre en charge.}
 \end{center}
 \end{figure}
 
-\vspace{13pt}
-{\color{color01} Le moteur de l'application se charge de la connexion entre le 
-client et le serveur. Il transmet les messages aux }{\color{color01} \textbf{Handler}}{\color{color01}  
-en ce qui concerne les actions possibles (REST).}
+Le moteur de l'application se charge de la connexion entre le 
+client et le serveur. Il transmet les messages aux \textbf{Handler}
+en ce qui concerne les actions possibles (REST).
 
-{\color{color01} L'}{\color{color01} \textbf{UpdateInterventionThread}}{\color{color01}  
-quant à lui, va se charger d'appeler la méthode }{\color{color01} \textbf{updateIntervention()}}{\color{color01}  
+L' \textbf{UpdateInterventionThread} quant à lui, va se charger d'appeler la méthode \textbf{updateIntervention()}
 périodiquement ? afin de mettre à jour le client avec les informations récupérées 
-sur le serveur.}
+sur le serveur.
 
-{\color{color01} Lorsque l'état du moteur change (donc quand sa liste d'entités 
-est modifiée), il va notifier le contrôleur.}
+Lorsque l'état du moteur change (donc quand sa liste d'entités est modifiée), il va notifier le contrôleur.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -475,17 +331,15 @@ est modifiée), il va notifier le contrôleur.}
 \end{center}
 \end{figure}
 
-\vspace{13pt}
-{\color{color01} \textbf{MapOverlay}}{\color{color01}  représente la carte de 
+
+\textbf{MapOverlay} représente la carte de 
 la SITAC. Il est capable de dessiner les différentes entités sur la carte et 
-déclenche des évènements lorsque l'utilisateur interagi avec.}
+déclenche des évènements lorsque l'utilisateur interagi avec.
 
-{\color{color01} Le }{\color{color01} \textbf{MenuExpandableListAdapter}}{\color{color01}  
-permet de dessiner les différentes entités dans le menu.}
+Le \textbf{MenuExpandableListAdapter} permet de dessiner les différentes entités dans le menu.
 
-{\color{color01} Un }{\color{color01} \textbf{Pictogram}}{\color{color01}  est 
-une image et est associé à une }{\color{color01} \textbf{Entity}}{\color{color01}  
-et un }{\color{color01} \textbf{IModel}}{\color{color01} .}
+Un \textbf{Pictogram} est une image et est associé à une \textbf{Entity}
+et un \textbf{IModel.}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -494,105 +348,96 @@ et un }{\color{color01} \textbf{IModel}}{\color{color01} .}
 \end{center}
 \end{figure}
 
-\vspace{13pt}
-{\color{color01} Les }{\color{color01} \textbf{IEntity}}{\color{color01}  sont 
-des objets qui contiennent un }{\color{color01} \textbf{IModel }}{\color{color01} et 
-un }{\color{color01} \textbf{IPictogram}}{\color{color01} . Ils peuvent être dans 
-différent états durant leur cycle de vie :}
+Les \textbf{IEntity} sont des objets qui contiennent un \textbf{IModel } et un \textbf{IPictogram.} Ils peuvent être dans différent états durant leur cycle de vie :
 
-\leftskip=36pt
-{\color{color01} - }{\color{color01} \textbf{EntityState.MENU}}{\color{color01} : 
-une entité du menu, vide, qui sert de base ``clonable''}
+\begin{itemize}
 
-{\color{color01} - }{\color{color01} \textbf{EntityState.ON\_SITAC}}{\color{color01} : 
-une entité avec un modèle bien défini et une position connue}
+\item[EntityState.MENU : ] une entité du menu, vide, qui sert de base ``clonable''.
 
-{\color{color01} - }{\color{color01} \textbf{EntityState.OFF\_SITAC}}{\color{color01} : 
-une entité avec un modèle bien défini mais une position inconnue (elle apparaîtra 
-donc dans l'onglet ``Position à définir''du menu)\label{h.h2unrh8mgexo}}
+\item[EntityState.ON\_SITAC : ] une entité avec un modèle bien défini et une position connue.
 
-\vspace{27pt}
-\subsubsection*{{\color{color02} \textbf{Description\label{h.r6665ylnfk1i}\label{h.xjiw3olwcxmd}\label{h.j7cm8m8rw09i}}}}
+\item[EntityState.OFF\_SITAC : ] une entité avec un modèle bien défini mais une position inconnue (elle apparaîtra donc dans l'onglet ``Position à définir'' du menu).
 
-\vspace{31pt}
-\subsection*{{\large {\color{color01} \textbf{Serveur\label{h.v0qp8r13qoia}}}}}
+\end{itemize}
 
-\vspace{14pt}
-\subsubsection*{{\color{color02} \textbf{Diagramme de classe}}}
+\subsubsection{Description}
+
+\subsection{Serveur}
+
+\subsubsection{Diagramme de classe}
 
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=526pt, height=509pt]{doc_dev-fig011.png}
 \caption{This should be the caption for \texttt{doc\_dev-fig011.png}.}
 \end{center}
-\end{figure}\label{h.sumgetufwhm2}
+\end{figure}
 
-\vspace{27pt}
-\subsubsection*{{\color{color02} \textbf{Description}}}
+\subsubsection{Description}
 
 \vspace{13pt}
 \leftskip=0pt
-{\color{color01} L'architecture du serveur est décomposée en une classe principale 
+{ L'architecture du serveur est décomposée en une classe principale 
 et quatre packages.}
 
 \vspace{13pt}
-{\color{color01} La classe « Server.java », qui se situe dans le package principal 
+{ La classe « Server.java », qui se situe dans le package principal 
 du serveur (org.agetac.server) a pour but d'initialiser le serveur et de lui associer 
-un }{\color{color01} \textit{Router}}{\color{color01} .}
+un }{ \textit{Router}}{ .}
 
-{\color{color01} L'initialisation du serveur consiste en la création d'un }{\color{color01} \textit{Restlet 
-component }}{\color{color01} sur le protocole HTTP et le port 8888 auquel nous 
-associons une }{\color{color01} \textit{application. }}{\color{color01} L'interêt 
-des }{\color{color01} \textit{Restlet components}}{\color{color01}  résident dans 
-le fait de pouvoir héberger plusieurs }{\color{color01} \textit{applications}}{\color{color01}  
+{ L'initialisation du serveur consiste en la création d'un }{ \textit{Restlet 
+component }}{ sur le protocole HTTP et le port 8888 auquel nous 
+associons une }{ \textit{application. }}{ L'interêt 
+des }{ \textit{Restlet components}}{  résident dans 
+le fait de pouvoir héberger plusieurs }{ \textit{applications}}{  
 ayant des fonctionnalités très différentes, tel qu'un client HTTP et un client 
 SMTP par exemple, au sein d'une même JVM (Java Virtual Machine). Le but est de 
 fournir une alternative portable, flexible et totalement orientée REST à l'API 
 Servlet standard.}
 
-{\color{color01} Une fois l'application créée, il faut lui associer un }{\color{color01} \textit{Router}}{\color{color01} . 
-Un }{\color{color01} \textit{Router }}{\color{color01} est un objet Restlet permettant 
+{ Une fois l'application créée, il faut lui associer un }{ \textit{Router}}{ . 
+Un }{ \textit{Router }}{ est un objet Restlet permettant 
 d'associer des URI (Uniform Resource Identifier) à des ressources Restlet avec 
 lesquelles la tablette cliente communiquera. Nous utilisons plusieurs templates 
 d'URI :}
 
 \leftskip=36pt
 \parindent=-18pt
-{\color{color01} « /ressources » permet d'obtenir la liste de tous les objets 
+{ « /ressources » permet d'obtenir la liste de tous les objets 
 du type ressource sur le serveur.}
 
-{\color{color01} « /ressource/\{ressourceId\} »  permet d'obtenir un objet particulier 
+{ « /ressource/\{ressourceId\} »  permet d'obtenir un objet particulier 
 du type ressource identifié par l'id ressourceId.}
 
 \leftskip=0pt
 \parindent=0pt
-{\color{color01} Ces deux templates d'URI sont combinés au sein du serveur sur 
+{ Ces deux templates d'URI sont combinés au sein du serveur sur 
 chaque ressource pour obtenir par exemple la liste des objets de type ressource2 
 au sein d'un objet particulier de type ressource1 : « /ressource1/\{ressource1Id\}/ressources2 
 ».}
 
-{\color{color01} Toutes les URI sont associées à des classes d'implémentation 
+{ Toutes les URI sont associées à des classes d'implémentation 
 de ressources situés dans le package ``resources''}
 
 \vspace{13pt}
-{\color{color01} \textbf{Le package ``entity''}}
+{ \textbf{Le package ``entity''}}
 
-{\color{color01} Chaque classe dans ce package est de la forme « typeEntity.java 
+{ Chaque classe dans ce package est de la forme « typeEntity.java 
 » et représente un type de base avec toutes les fonctions get() et set() associées 
 : InterventionEntity, MessageEntity, etc ...Ces classes sont annotées pour pouvoir 
 être persistantes et ont pour unique but d'être stockées.}
 
 \vspace{13pt}
-{\color{color01} \textbf{Le package ``db''}}
+{ \textbf{Le package ``db''}}
 
 \vspace{13pt}
-{\color{color01} In this package we have classes that implement the DAO (Data Access 
+{ In this package we have classes that implement the DAO (Data Access 
 Object) pattern. A typical DAO provides an interface that defines its contract 
 with the outside world. This takes the form of a series of data access and data 
 update methods. }
 
 \vspace{13pt}
-{\color{color01} We defined our DAOs as interfaces. This has various benefits, 
+{ We defined our DAOs as interfaces. This has various benefits, 
 and the one we highlight here is that we can now provide an implementation using 
 DataNucleus and JDO (in the following paragraph we give a quick review of JDO). 
 We could, in principle, provide a DAO implementation of this interface using JDBC 
@@ -600,30 +445,30 @@ for example, or one for whatever persistence technology. It demonstrates a flexi
 design strategy allowing components to be swapped at a future date.}
 
 \vspace{13pt}
-{\color{color01} As mentioned in the previous paragraph, in the Agetac server, 
+{ As mentioned in the previous paragraph, in the Agetac server, 
 we use Java Data Objects (JDO) for persistence, a standard interface for storing 
 objects containing data into a database. The standard defines interfaces for annotating 
 Java objects, retrieving objects with queries, and interacting with a database 
 using transactions. }
 
 \vspace{13pt}
-{\color{color01} An application that uses the JDO interface can work with different 
+{ An application that uses the JDO interface can work with different 
 kinds of databases without using any database-specific code, including relational 
 databases, hierarchical databases, and object databases. The Agetac server uses 
 a simple HSSQL database but, as with other interface standards, JDO simplifies 
 porting the application between different storage solutions.}
 
 \vspace{13pt}
-{\color{color01} The standard procedure for implementing DAO methods using JDO, 
+{ The standard procedure for implementing DAO methods using JDO, 
 is to retrieve a PersistenceManager , obtain a transaction, and perform our operations 
 (create, retrieve, update, delete). Due to space constraints, we do not outline 
 in detail those steps.}
 
 \vspace{13pt}
-{\color{color01} - enhancing data classes}
+{ - enhancing data classes}
 
 \vspace{13pt}
-{\color{color01} JDO uses a post-compilation \texttt{"}enhancement\texttt{"} step 
+{ JDO uses a post-compilation \texttt{"}enhancement\texttt{"} step 
 in the build process to associate data classes with the JDO implementation. There 
 a Datanucleus Plugin for Eclipse does this step automatically when building, but 
 not everyone can use this approach because it requires administrative rights to 
@@ -632,10 +477,10 @@ script that performs the enhancement (DataNucleus provides an Ant task to enhanc
 files).}
 
 \vspace{13pt}
-{\color{color01} - fetch groups}
+{ - fetch groups}
 
 \vspace{13pt}
-{\color{color01} Another thing to note is the use of fetch groups. When the Android 
+{ Another thing to note is the use of fetch groups. When the Android 
 client requests an Intervention, he wants not only the primitive fields of an intervention 
 (id, name), he also wants the related vehicles, messages, targets, etc. Consequently, 
 when we bring an intervention from the database, we also have to bring the related 
@@ -643,75 +488,71 @@ entities. We define the related entities to fetch with the use of fetch-groups.
 In our project, fetch groups are defined using Java annotations.}
 
 \vspace{13pt}
-{\color{color01} - problematic updates}
+{ - problematic updates}
 
 \vspace{13pt}
-{\color{color01} One way to update an object with JDO is to fetch the object, then 
-modify it while the PersistenceManager that returned the object }{\color{color01} \textit{is 
-still open}}{\color{color01} . Changes are persisted when the PersistenceManager 
+{ One way to update an object with JDO is to fetch the object, then 
+modify it while the PersistenceManager that returned the object }{ \textit{is 
+still open}}{ . Changes are persisted when the PersistenceManager 
 is closed. However, in the case of a client/server application, that doesn't work. 
 }
 
 \vspace{13pt}
-{\color{color01} In a client/server application typically we retrieve an object, 
+{ In a client/server application typically we retrieve an object, 
 we send it to the client for some processing, and then the client it back and the 
 server is supposed to persist the changes. By the time the object is returned to 
 the server for persisting the changes, the persistent manager that initially retrieved 
-the object }{\color{color01} \textit{is gone}}{\color{color01} .}
+the object }{ \textit{is gone}}{ .}
 
 \vspace{13pt}
-{\color{color01} To mitigate this problem, when the server is called to update 
+{ To mitigate this problem, when the server is called to update 
 an object, we search for that object in the database and, if found, we map (using 
 the ModelMapper library) the fields of the sent object to the fields of the retrieved 
 object.}
 
 \vspace{13pt}
-{\color{color01} \textbf{Le package resources}}
+{ \textbf{Le package resources}}
 
-{\color{color01} Ce package contient deux classes par type de ressource : une classe 
+{ Ce package contient deux classes par type de ressource : une classe 
 permettant de travailler sur une instance particulière de la ressource, « typeResourceImpl.java 
 », et une classe permettant de travailler sur la liste de toutes les instances 
 de cette ressources, « typesResourceImpl.java ».}
 
-{\color{color01} Chaque classe étend ServerResource de l'API Restlet et implémente 
+Chaque classe étend ServerResource de l'API Restlet et implémente 
 son interface contenue dans le Model, « typeResource » ou « typesResources ». 
 Ces classes implémentent les fonctions add(), remove() et update() permettant 
 d'ajouter, de supprimer ou de mettre à jour la ressource. Ces fonctions prennent 
 en entrée un objet typeDTO (Data Transfer Object) envoyé par les tablettes clientes 
-et mettent à jour la persistance.}
+et mettent à jour la persistance.
 
 \vspace{13pt}
-{\color{color01} \textbf{Le package client}}
+{ \textbf{Le package client}}
 
-{\color{color01} Il s'agit d'une IHM (Interface Homme Machine) permettant d'interagir 
+Il s'agit d'une IHM (Interface Homme Machine) permettant d'interagir 
 directement avec les informations contenues sur le serveur. Ce package est articulé 
 autour de trois sous-packages, « controller », « model » et « view » permettant 
-de décomposer cette IHM selon le pattern MVC.}
+de décomposer cette IHM selon le pattern MVC.
 
-{\color{color01} Le pattern MVC (Modèle Vue Contrôleur) est un pattern qui organise 
+Le pattern MVC (Modèle Vue Contrôleur) est un pattern qui organise 
 la conception d'une IHM : le modèle gère ou décrit les données, la vue correspond 
 à l'interface direct avec laquelle l'utilisateur interagit et le contrôleur prend 
-en charge la synchronisation et la mise à jour du modèle et de la vue.\label{h.rnrsbrh8lwmq}}
+en charge la synchronisation et la mise à jour du modèle et de la vue.
 
-\vspace{37pt}
-\section*{{\LARGE {\color{color01} \textbf{Fonctionnement}}}}
 
-{\color{color01} Envoi de message côté client}
+\section{Fonctionnement}
+
 
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=531pt, height=268pt]{doc_dev-fig012.png}
-\caption{This should be the caption for \texttt{doc\_dev-fig012.png}.}
+\caption{Envoi message côté client.}
 \end{center}
 \end{figure}
-
-\vspace{27pt}
-{\color{color01} Envoi message côté serveur}
 
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=515pt, height=172pt]{doc_dev-fig013.png}
-\caption{This should be the caption for \texttt{doc\_dev-fig013.png}.}
+\caption{Envoi message côté serveur.}
 \end{center}
 \end{figure}
 
