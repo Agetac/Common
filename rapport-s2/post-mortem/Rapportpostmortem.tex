@@ -2,8 +2,10 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor = blue]{hyperref}
 
 \usepackage{ulem}
 \usepackage{color}
@@ -14,212 +16,160 @@
 \definecolor{color02}{rgb}{0.40,0.40,0.40}
 \definecolor{color03}{rgb}{0.07,0.33,0.80}
 
+\title{\Huge{AGETAC\\
+Aide à la GEstion TACtique\\}
+\huge{{\color{color02} \textit{Rapport Post-Mortem}}}}
+
+\date{Mai 2012}
+\author{Projet Agetac - Université de Rennes 1\\
+Encadré par Noël Plouzeau}
+
 \begin{document}
-\baselineskip=13pt
-{\color{color01} Rapport post mortem (Analyse de gestion de projet). }
 
-\vspace{55pt}
-\begin{center}
-{\Huge {\color{color01} \textbf{AGETAC}}}
+\maketitle
 
-{\Huge {\color{color01} \textbf{Aide à la GEstion TACtique}}}
+%\vspace{138pt}
+%{\color{color01} Ce document doit répondre aux questions suivantes:}
+%
+%
+%{\color{color01} qu'est-ce qui n'a pas marché lors de la gestion de ce projet, 
+%et pourquoi? comment cela aurait-il pu être évité?}
+%
+%{\color{color01} qu'est-ce qui a bien marché, et pourquoi? que faudra-t-il faire 
+%pour reproduire ce résultat?\label{h.rzqw1zvcpnvw}}
 
-\vspace{41pt}
-{\huge {\color{color02} \textit{Rapport Post-Mortem}}}
-\end{center}
+\vspace{1.1in}
+\tableofcontents
+\newpage
 
-\vspace{138pt}
-{\color{color01} Ce document doit répondre aux questions suivantes:}
+\section{Introduction}
 
-\leftskip=36pt
-\parindent=-18pt
-{\color{color01} qu'est-ce qui n'a pas marché lors de la gestion de ce projet, 
-et pourquoi? comment cela aurait-il pu être évité?}
+Dans ce rapport, nous étudierons plusieurs points du projet.
 
-{\color{color01} qu'est-ce qui a bien marché, et pourquoi? que faudra-t-il faire 
-pour reproduire ce résultat?\label{h.rzqw1zvcpnvw}}
-
-\vspace{51pt}
-\section*{{\LARGE {\color{color01} \textbf{Sommaire}}}}
-
-\vspace{13pt}
-\leftskip=18pt
-\parindent=0pt
-{\color{color03} \emph{Sommaire}}
-
-{\color{color03} \emph{Introduction}}
-
-{\color{color03} \emph{Ce qui a marché}}
-
-{\color{color03} \emph{Ce qui n'a pas marché}}
-
-{\color{color03} \emph{Ce que nous n'avons pas eu le temps d'implémenter\label{h.hqop80fo4yag}\label{h.9rnlmycclih6}\label{h.dbnzf7me2hmh}}}
-
-\vspace{106pt}
-\section*{{\LARGE {\color{color01} \textbf{Introduction}}}}
-
-\vspace{13pt}
-\leftskip=0pt
-{\color{color01} Dans ce rapport, nous étudierons plusieurs points du projet.}
-
-{\color{color01} Tout d'abord, nous parlerons des points importants qui ont bien 
+ Tout d'abord, nous parlerons des points importants qui ont bien 
 marché, qui ne nous ont pas posé de problèmes particuliers lors de leurs mises 
 en place. Ensuite, nous détaillerons les aspects du projet qui nous ont pris plus 
 de temps ou qui n'ont pas fonctionné. Nous proposerons également une solution 
 pour ces problèmes. Pour finir, nous reviendrons sur les fonctionnalités que 
 nous n'avons pas eu le temps d'implémenter faute de temps, mais qui sont prévues 
-pour les versions ultérieures du projet.\label{h.mqlx3ywo6evw}}
+pour les versions ultérieures du projet.
 
-\vspace{24pt}
-\section*{{\LARGE {\color{color01} \textbf{Ce qui a marché }}}}
+\section{Ce qui a marché }
 
-\vspace{13pt}
-\parindent=3pt
-{\large {\color{color01} - Android}}
 
-\vspace{13pt}
-\parindent=0pt
-{\color{color01} Une fois la technologie Android prise en main, nous n'avons pas 
+\subsection{Android}
+
+Une fois la technologie Android prise en main, nous n'avons pas 
 eu de problèmes majeurs quant à son utilisation. Le fait que les deux langages 
 utilisés JAVA et XML soient deux langages dont nous connaissions déjà la syntaxe 
 nous a facilité la tâche. La documentation disponible sur internet nous a permis 
-d'avancer rapidement.  }
+d'avancer rapidement.
 
-\vspace{27pt}
-{\large {\color{color01} - OpenStreetMap}}
+\subsection{OpenStreetMap}
 
-\vspace{13pt}
-{\color{color01} OpenStreetMap est un service de cartographie communautaire permettant 
+OpenStreetMap est un service de cartographie communautaire permettant 
 de récupérer facilement des cartes très précises. Ce service a été utilisé 
 dans le projet Agetac plutôt que GoogleMap du fait des mises à jour plus régulières 
 possible grâce à sa grande base d'utilisateurs et également de la politique 
 de Google prévoyant une contribution pour un grand nombre d'utilisation. Étant 
 un ensemble libre mais sous licence, nous créditons donc OpenStreetMap via ce 
-lien : }{\color{color03} \emph{http://www.openstreetmap.org/}}
+lien :  \url{http://www.openstreetmap.org/}
 
-\vspace{13pt}
-\parindent=3pt
-{\large {\color{color01} - RESTlet and Jackson}}
+\subsection{RESTlet and Jackson}
 
-\vspace{13pt}
-\parindent=0pt
-{\color{color01} Restlet is a comprehensive yet lightweight RESTful web framework 
+Restlet is a comprehensive yet lightweight RESTful web framework 
 for Java that allowed us to embrace the architecture style of the Web (REST) and 
 benefit from its simplicity. Restlet has a light core but thanks to its plugin 
 architecture, it is also a comprehensive REST framework for Java. It supports all 
 REST concepts (Resource, Representation, Connector, Component, etc.) and we use 
-it both in the Client and the Server side.}
+it both in the Client and the Server side.
 
-\vspace{13pt}
-{\color{color01} For (de)serialization we use Jackson. Jackson is a multi-purpose 
-Java library for processing JSON data format. It }{\color{color01} \textit{just 
-works}}{\color{color01}  and it is very intuitive to work with.}
+For (de)serialization we use Jackson. Jackson is a multi-purpose 
+Java library for processing JSON data format. It just 
+works and it is very intuitive to work with.
 
-\vspace{13pt}
-\parindent=3pt
-{\large {\color{color01} - Persistence}}
+\subsection{Persistence}
 
-\vspace{13pt}
-\parindent=0pt
-{\color{color01} In the Agetac server we use Java Data Objects (JDO), a standard 
+In the Agetac server we use Java Data Objects (JDO), a standard 
 interface for storing objects containing data into a database. The standard defines 
 interfaces for annotating Java objects, retrieving objects with queries, and interacting 
 with a database using transactions. An application that uses the JDO interface 
 can work with different kinds of databases without using any database-specific 
 code, including relational databases, hierarchical databases, and object databases. 
 As with other interface standards, JDO simplifies porting the Agetac Server between 
-different storage solutions.}
+different storage solutions.
 
-\vspace{13pt}
-{\color{color01} Some difficulties were encountered, the specifics are described 
-in the }{\color{color01} \textit{Document de développement\label{h.ssdrr26ojh9l}}}
+Some difficulties were encountered, the specifics are described 
+in the Document de développement
 
-\vspace{24pt}
-\section*{{\LARGE {\color{color01} \textbf{Ce qui n'a pas marché}}}}
 
-\parindent=3pt
-{\large {\color{color01} - Authentification\label{h.ifmwcz4cx8ke}}}
+\section{Ce qui n'a pas marché}
 
-\vspace{37pt}
-\section*{{\LARGE {\color{color01} \textbf{Ce que nous n'avons pas eu le temps 
-d'implémenter}}}}
+\subsection{Authentification}
 
-\vspace{27pt}
-\parindent=0pt
-{\color{color01} En raison d'un manque de temps, certaines fonctionnalités que 
+
+\section{Ce que nous n'avons pas eu le temps d'implémenter}
+
+ En raison d'un manque de temps, certaines fonctionnalités que 
 nous avions prévu pour l'application lors de l'analyse n'ont pas pu être implémentées. 
 Nous les rappelons ici en expliquant brièvement ce qu'elles auraient du apporter 
-à Agetac.}
+à Agetac.
 
-\vspace{13pt}
-{\large {\color{color01} - Authentification}}
+\subsection{Authentification}
 
-{\color{color01} Actuellement, il n'y a pas de système d'authentification efficace 
+Actuellement, il n'y a pas de système d'authentification efficace 
 en place pour ce qui est de l'accès à l'application sur les tablettes. Dans le 
 futur, les agents possédant une tablette devront s'authentifier pour accéder 
 aux interventions ou en créer. Cela permettra de sécuriser les informations et 
 de mettre en place un système d'autorisation pour les différentes fonctionnalités 
-de l'application.}
+de l'application.
 
-\vspace{13pt}
-{\large {\color{color01} - Gestion des agents}}
+\subsection{Gestion des agents}
 
-{\color{color01} Suite à une décision prise en accord avec le client, il n'y 
+Suite à une décision prise en accord avec le client, il n'y 
 a pas de système de gestion des personnes dans la version actuelle. Les pompiers 
 présents sur l'intervention sont identifiés par le véhicule auquel ils sont 
-attachés.}
+attachés.
 
-\vspace{13pt}
-\parindent=3pt
-{\large {\color{color01} - Hiérarchie}}
+\subsection{Hiérarchie}
 
-\parindent=0pt
-{\color{color01} A tout moment, un utilisateur pourra consulter la hiérarchie 
+A tout moment, un utilisateur pourra consulter la hiérarchie 
 de l'intervention indiquant le commandement, les groupes et les canaux radios par 
 lesquels les différents chefs pourront être contactés. Étant donné que la 
 gestion des agents n'a pas encore été mise en place, cette fenêtre n'est pas 
-encore disponible.}
+encore disponible.
 
-\vspace{13pt}
-{\large {\color{color01} - Sectorisation}}
+\subsection{Sectorisation}
 
-{\color{color01} Du fait de quelques problèmes rencontrés avec la SITAC, nous 
+Du fait de quelques problèmes rencontrés avec la SITAC, nous 
 n'avons pas eu le temps de mettre en place le système de sectorisation fonctionnelle 
 et géographique. Celui-ci devra permettre au COS de regrouper les véhicules par 
-secteurs, suivant les zones de dangers et les types de véhicules impliqués.}
+secteurs, suivant les zones de dangers et les types de véhicules impliqués.
 
-\vspace{13pt}
-\parindent=3pt
-{\large {\color{color01} - Groupe }}
+\subsection{Groupe }
 
-\parindent=0pt
-{\color{color01} Le regroupement des véhicules sous un même commandement n'est 
+Le regroupement des véhicules sous un même commandement n'est 
 pas encore mis en oeuvre. A terme, il permettra au COS de regrouper des petits 
 groupes de véhicules au sein d'un groupe, afin de faciliter les déplacements 
-et la transmission des ordres.}
+et la transmission des ordres.
 
-\vspace{13pt}
-{\large {\color{color01} - Historique}}
+\subsection{Historique}
 
-\parindent=36pt
-{\color{color01} Une fonctionnalité qui sera à implémenter est la notion d'historique 
+Une fonctionnalité qui sera à implémenter est la notion d'historique 
 d'intervention. Toutes les interventions qui se déroulent avec l'aide d'Agetac 
 seront enregistrées étapes par étapes. Cet historique aura un intérêt particulier 
 pour la formation des Officiers Sapeurs-pompiers et leur permettra de revoir pas 
-à pas le déroulement d'une intervention.}
+à pas le déroulement d'une intervention.
 
-\parindent=0pt
-{\color{color01} Associé à cet historique, un outil de simulation d'intervention 
-pourra être ajouté, toujours dans le cadre de la formation.}
+Associé à cet historique, un outil de simulation d'intervention 
+pourra être ajouté, toujours dans le cadre de la formation.
 
-\vspace{13pt}
-{\large {\color{color01} - Tableau des victimes}}
+\subsection{Tableau des victimes}
 
-{\color{color01} L'application devra disposer d'un tableau recensant les victimes 
+L'application devra disposer d'un tableau recensant les victimes 
 d'une intervention en fonction de leur état. Ce tableau sera visualisable par 
-les agents possédant une tablette et sera modifiable par le COS.}
+les agents possédant une tablette et sera modifiable par le COS.
 
-\vspace{13pt}
-{\color{color01} - Réception des Messages du CODIS sur la tablette.}
+\subsection{Réception des Messages du CODIS sur la tablette.}
 
 \end{document}
