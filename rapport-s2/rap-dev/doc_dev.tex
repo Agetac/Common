@@ -46,7 +46,6 @@
 \definecolor{color03}{rgb}{0.07,0.33,0.80}
 
 
-
 \title{\Huge{AGETAC\\
 Aide à la GEstion TACtique\\}
 \huge{{\color{color02} \textit{Document de développement}}}}
@@ -58,13 +57,13 @@ Encadré par Noël Plouzeau}
 
 
 \begin{document}
-
-
+\vspace{0.5in}
 \maketitle
+\newpage
+$~$
+\vspace{0.5in}
 \tableofcontents
 \newpage
-
-
 \section{Introduction}
 
 \subsection{Présentation du document}
@@ -131,13 +130,12 @@ Avec le client HTTP par défaut de Restlet, nous avions des problèmes de commun
 \end{figure}
 
 \newpage
-\subsubsection{Description}
 
-\paragraph{Package resources :}
+\subsubsection{Package resources}
 
 Contient toutes les interfaces des ressources ainsi que les classes du package “resources” que le serveur doit implémenter.
 
-\paragraph{Package observer :}
+\subsubsection{Package observer}
 
 Contient la classe \textbf{MyObservable} qui étend \textbf{java.util.Observable} et qui rend publique la méthode textbf{setChanged()}.
 
@@ -145,13 +143,13 @@ L'intérêt du pattern Observer est de prévenir les classes observatrices via u
 
 Ce pattern est utilisé principalement dans le client pour mettre à jour les données.
 
-\paragraph{Package dto :}
+\subsubsection{Package dto}
 
 Ces classes représentent des ressources, « \textbf{typeDTO.java} », qui sont amenées à être échangées entre la tablette cliente et le serveur. Ce sont ces objets qui transitent sur le réseau.
 
 Nous ne transférons pas les entités ORM (Object-Relational Mapping) car, à moins d’être très attentif, il y a le risque de récupérer plus d’informations que voulu de l’arbre de données de l’objet si Jackson sérialise une entité ORM (pour la faire passer à travers le réseau).
 
-\paragraph{Package client :}
+\subsubsection{Package client}
 
 « \textbf{AgetacClient.java} » est une classe “protocolaire” connaissant les opérations GET, POST, PUT, DELETE à effectuer sur les différentes ressources (telle une demande de véhicule ou l'ajout d'une victime). Les fonctions associées effectuent les opérations REST correspondantes : elles créent une ressource \textbf{typeDTO}, à laquelle est associée une URI (Uniform Resource Identifier), qui sera envoyée au serveur.
 
@@ -193,9 +191,8 @@ try {
 
 \subsection{Client}
 
-\subsubsection{Diagramme de classe}
 
-\paragraph{Package controller :}
+\subsubsection{Package controller}
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=350pt]{doc_dev-fig002.png}
@@ -213,7 +210,7 @@ Le contrôleur observe aussi le moteur \textbf{InterventionEngine}. Lorsque celu
 Chaque sous-contrôleur \textbf{ISubController} correspond à une \textbf{ITabActivity} et sait comment traiter les informations en fonction de l’état de la variable de type \textbf{ActionFlag}.
 \newpage
 
-\paragraph{Package activity :}
+\subsubsection{Package activity}
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[height=433pt]{doc_dev-fig003.png}
@@ -224,7 +221,7 @@ Chaque sous-contrôleur \textbf{ISubController} correspond à une \textbf{ITabAc
 Les activités forment l’interface graphique de l’application. Elles jouent aussi le rôle de “listener” en réagissant aux interactions de l’utilisateur. Aussi définissent-elles un \textbf{ActionFlag} approprié pour l’action en cours (ajout, suppression, update, …), ainsi qu’une \textbf{IEntity} courante (touchedEntity). Enfin, elles notifient à leur observateur quand leur état a changé.
 
 \newpage
-\paragraph{Package fragment :}
+\subsubsection{Package fragment}
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=391pt, height=344pt]{doc_dev-fig004.png}
@@ -255,7 +252,7 @@ Les menus sont capables de notifier les interactions de l’utilisateur via l’
 \end{figure}
 
 \newpage
-\paragraph{Package handler :}
+\subsubsection{Package handler}
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=233pt, height=209pt]{doc_dev-fig007.png}
@@ -270,7 +267,7 @@ Ils vont par exemple se charger de supprimer un véhicule côté client et donc 
 Le fait de passer dans un handler va automatiquement déclencher une mise à jour côté client de l’interface graphique, car l’état du moteur va changer en fonction de l’action à prendre en charge.
 
 \newpage
-\paragraph{Package engine :}
+\subsubsection{Package engine}
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=293pt, height=456pt]{doc_dev-fig008.png}
@@ -285,7 +282,7 @@ L’\textbf{UpdateInterventionThread} quant à lui, va se charger d’appeler la
 Lorsque l’état du moteur change (donc quand sa liste d'entités est modifiée), il va notifier le contrôleur.
 \newpage
 
-\paragraph{Package view :}
+\subsubsection{Package view}
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=499pt, height=427pt]{doc_dev-fig009.png}
@@ -301,7 +298,7 @@ Le \textbf{MenuExpandableListAdapter} permet de dessiner les différentes entit�
 Un \textbf{Pictogram} est une image et est associé à une \textbf{Entity} et un \textbf{IModel}.
 
 \newpage
-\paragraph{Package entity}
+\subsubsection{Package entity}
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=410pt, height=424pt]{doc_dev-fig010.png}
@@ -350,12 +347,12 @@ Toutes les URI sont associées à des classes d'implémentation de ressources si
 
 
 
-\paragraph{Le package entity :}
+\subsubsection{Le package entity}
 
 Chaque classe dans ce package est de la forme « \textbf{typeEntity.java} » et représente un type de base avec toutes les fonctions \textbf{get()} et \textbf{set()} associées : \textbf{InterventionEntity}, \textbf{MessageEntity}, etc… Ces classes sont annotées pour pouvoir être persistantes et ont pour unique but d'être stockées.\\
 
 
-\paragraph{Le package db :}
+\subsubsection{Le package db}
 
 Dans ce package, nous avons des classes qui implémentent le pattern DAO (Data Access Object). Un DAO typique fournit une interface qui définit son lien avec le monde extérieur. Ce lien prend la forme d’une série de données d’accès et de méthodes de mise à jour de données.\\
 
@@ -372,17 +369,17 @@ Une application qui utilise JDO peut travailler avec différents types de bases 
 La procédure standard pour implémenter des méthodes DAO utilisant JDO est d’utiliser un PersistenceManager, obtenir une transaction et effectuer les opérations à faire (création, récupération, suppression, mise à jour). Compte tenu de la taille limitée de ce dossier, nous ne détaillerons pas plus ces étapes.\\
 
 
-\paragraph{Optimisation des classes de données :}
+\subsubsection{Optimisation des classes de données}
 
 JDO utilise une étape d’optimisation post-compilation dans le processus de construction du projet pour associer les classes de données avec l’implémentation JDO. Ici, le plugin Datanucleus pour Eclipse réalise cette étape automatiquement à la construction, mais tout le monde ne peut pas utiliser cette approche car elle requière des droits administratifs pour l’installer, ou une installation locale d’Eclipse. De notre côté, nous avons créé un script ANT qui effectue cette optimisation (DataNucleus fournit une tâche Ant pour améliorer les fichiers).\\
 
 
-\paragraph{Fetch groups}
+\subsubsection{Fetch groups}
 
 Un autre chose à noter est l’utilisation de “Fetch groups”. Quand le client Android récupère une intervention, il ne demande pas seulement les champs primitifs de l’intervention (id, name), il veut aussi les véhicules, messages, sources, et autres éléments associés. En conséquence, quand nous récupérons une intervention dans la base de donnée, nous devons aussi récupérer les entités liées. Nous définissons ces entités pour correspondre avec l’utilisation des “Fetch groups”. Dans notre projet, ces groupes sont indiqués par des annotations Java.\\
 
 
-\paragraph{Mises à jour problématiques :}
+\subsubsection{Mises à jour problématiques}
 
 Un moyen de mettre à jour un objet avec JDO est de récupérer cet objet puis le modifier pendant que le PersistenceManager qui retourne cet objet est toujours ouvert. Les changements sont conservés quand le PersistenceManager est refermé. Cependant, dans le cas d’une application client/serveur, cela ne fonctionne pas.\\
 
@@ -393,7 +390,7 @@ Typiquement, dans un système client/serveur, on retire l’objet, on l’envoie
 Pour atténuer ce problème, quand le serveur est appelé à mettre à jour un objet, nous recherchons cet objet dans la base de données et, s’il est trouvé, nous associons (en utilisant la librairie ModelMapper) les champs de l’objet envoyé aux champs de l’objet retiré.\\
 
 
-\paragraph{Le package resources :}
+\subsubsection{Le package resources}
 
 Ce package contient deux classes par type de ressource : une classe permettant de travailler sur une instance particulière de la ressource, « \textbf{typeResourceImpl.java} », et une classe permettant de travailler sur la liste de toutes les instances de cette ressource, « \textbf{typesResourceImpl.java} ».\\
 
@@ -401,13 +398,12 @@ Ce package contient deux classes par type de ressource : une classe permettant d
 Chaque classe étend ServerResource de l'API Restlet et implémente son interface contenue dans le Model, « typeResource » ou « typesResources ». Ces classes implémentent les fonctions add(), remove() et update() permettant d'ajouter, de supprimer ou de mettre à jour la ressource. Ces fonctions prennent en entrée un objet \textbf{typeDTO} (Data Transfer Object) envoyé par les tablettes clientes et mettent à jour la persistance.\\
 
 
-\paragraph{Le package client :}
+\subsubsection{Le package client}
 
 Il s'agit d'une IHM (Interface Homme Machine) permettant d'interagir directement avec les informations contenues sur le serveur. Ce package est articulé autour de trois sous-packages, « controller », « model » et « view » permettant de décomposer cette IHM selon le pattern MVC (Modèle Vue Contrôleur).\\
 
 Le pattern MVC est un pattern qui organise la conception d'une IHM : le modèle gère ou décrit les données, la vue correspond à l'interface directe avec laquelle l'utilisateur interagit et le contrôleur prend en charge la synchronisation et la mise à jour du modèle et de la vue.\\
 
-\newpage
 \section{Fonctionnement}
 
 
