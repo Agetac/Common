@@ -9,7 +9,7 @@
 
 \usepackage{ulem}
 \usepackage{color}
-\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage[top=2.5cm,bottom=3cm,left=3cm,right=3cm]{geometry}
 
 
 \definecolor{color01}{rgb}{0.00,0.00,0.00}
@@ -38,138 +38,86 @@ Encadré par Noël Plouzeau}
 %{\color{color01} qu'est-ce qui a bien marché, et pourquoi? que faudra-t-il faire 
 %pour reproduire ce résultat?\label{h.rzqw1zvcpnvw}}
 
-\vspace{1.1in}
+\vspace{1in}
 \tableofcontents
 \newpage
 
 \section{Introduction}
 
-Dans ce rapport, nous étudierons plusieurs points du projet.
+Dans ce rapport, nous étudierons plusieurs points du projet. Tout d’abord, nous parlerons des points importants qui ont bien marché, qui ne nous ont pas posé de problèmes particuliers lors de leurs mises en place. Ensuite, nous détaillerons les aspects du projet qui nous ont pris plus de temps ou qui n’ont pas fonctionné. Nous proposerons également une solution pour ces problèmes. Pour finir, nous reviendrons sur les fonctionnalités que nous n’avons pas eu le temps d’implémenter faute de temps, mais qui sont prévues pour les versions ultérieures du projet.
 
- Tout d'abord, nous parlerons des points importants qui ont bien 
-marché, qui ne nous ont pas posé de problèmes particuliers lors de leurs mises 
-en place. Ensuite, nous détaillerons les aspects du projet qui nous ont pris plus 
-de temps ou qui n'ont pas fonctionné. Nous proposerons également une solution 
-pour ces problèmes. Pour finir, nous reviendrons sur les fonctionnalités que 
-nous n'avons pas eu le temps d'implémenter faute de temps, mais qui sont prévues 
-pour les versions ultérieures du projet.
-
-\section{Ce qui a marché }
+\section{Ce qui a fonctionné}
 
 
 \subsection{Android}
 
-Une fois la technologie Android prise en main, nous n'avons pas 
-eu de problèmes majeurs quant à son utilisation. Le fait que les deux langages 
-utilisés JAVA et XML soient deux langages dont nous connaissions déjà la syntaxe 
-nous a facilité la tâche. La documentation disponible sur internet nous a permis 
-d'avancer rapidement.
+Une fois la technologie Android prise en main, nous n’avons pas eu de problèmes majeurs quant à son utilisation. Le fait que les deux langages utilisés JAVA et XML soient deux langages dont nous connaissions déjà la syntaxe nous a facilité la tâche. La documentation disponible sur internet nous a aussi permis d’avancer rapidement.  
 
 \subsection{OpenStreetMap}
 
-OpenStreetMap est un service de cartographie communautaire permettant 
-de récupérer facilement des cartes très précises. Ce service a été utilisé 
-dans le projet Agetac plutôt que GoogleMap du fait des mises à jour plus régulières 
-possible grâce à sa grande base d'utilisateurs et également de la politique 
-de Google prévoyant une contribution pour un grand nombre d'utilisation. Étant 
-un ensemble libre mais sous licence, nous créditons donc OpenStreetMap via ce 
-lien :  \url{http://www.openstreetmap.org/}
+OpenStreetMap est un service de cartographie communautaire permettant de récupérer facilement des cartes très précises. Ce service a été utilisé dans le projet Agetac plutôt que GoogleMap du fait des mises à jour plus régulières possible grâce à sa grande base d’utilisateurs et également de la politique de Google prévoyant une contribution pour un grand nombre d’utilisation. Étant un ensemble libre mais sous licence, nous créditons donc OpenStreetMap via ce lien : \url{http://www.openstreetmap.org/}
 
 \subsection{RESTlet and Jackson}
 
-Restlet is a comprehensive yet lightweight RESTful web framework 
-for Java that allowed us to embrace the architecture style of the Web (REST) and 
-benefit from its simplicity. Restlet has a light core but thanks to its plugin 
-architecture, it is also a comprehensive REST framework for Java. It supports all 
-REST concepts (Resource, Representation, Connector, Component, etc.) and we use 
-it both in the Client and the Server side.
+Restlet est un framework Java complet et léger qui nous permet de mettre en place une architecture web (REST) et de bénéficier de sa simplicité. Restlet possède un noyau léger mais grâce à son architecture basé sur les plugins, c’est aussi un framework REST complet pour Java. Il supporte tous les concepts REST (Ressources, Représentions, Connecteur, Composants, etc.) et nous l'utilisons côté serveur et client.
 
-For (de)serialization we use Jackson. Jackson is a multi-purpose 
-Java library for processing JSON data format. It just 
-works and it is very intuitive to work with.
+Pour la sérialisation des objets, nous utilisons Jackson, une librairie Java multi-usage pour manipuler le format JSON. 
 
-\subsection{Persistence}
+\subsection{Persistance}
 
-In the Agetac server we use Java Data Objects (JDO), a standard 
-interface for storing objects containing data into a database. The standard defines 
-interfaces for annotating Java objects, retrieving objects with queries, and interacting 
-with a database using transactions. An application that uses the JDO interface 
-can work with different kinds of databases without using any database-specific 
-code, including relational databases, hierarchical databases, and object databases. 
-As with other interface standards, JDO simplifies porting the Agetac Server between 
-different storage solutions.
+Dans le serveur Agetac, nous utilisons les Java Data Objects (JDO), une interface standard pour stocker les objets dans une base de données. Des interfaces pour annoter des objets Java, récupérer des objets grâce a des requêtes, et interagir avec une base de données en utilisant des transactions sont définies dans la librairie standard. Une application utilisant les interfaces JDO peut fonctionner avec différents types de base de données sans utiliser de code spécifique, incluant les bases de données relationnelle, les bases de données hiérarchique, et les bases de données d’objets. Comme d’autres interfaces standards, JDO simplifie le portage du serveur d’Agetac vers d’autres solutions de stockage.
 
-Some difficulties were encountered, the specifics are described 
-in the Document de développement
+Des difficultés ont été rencontrées, elles sont décrites dans le Document de développement.
 
+\newpage
+\section{Ce qui n'a pas fonctionné}
 
-\section{Ce qui n'a pas marché}
 
 \subsection{Authentification}
+Nous avons tenté de mettre en place un système d’authentification pour sécuriser les échanges de données et permettre l’authentification des utilisateurs mais le système ne fonctionnait pas correctement et par la suite, de nombreux changements ont été effectués et par manque de temps, nous avons préféré laisser cette fonctionnalité de coté.
+
+Il n’y a donc actuellement pas de système d’authentification efficace en place pour ce qui est de l’accès à l’application sur les tablettes. Dans le futur, les agents possédant une tablette devront s'authentifier pour accéder aux interventions ou en créer. Cela permettra de sécuriser les informations et de mettre en place un système d’autorisation pour les différentes fonctionnalités de l’application.
+
+\subsection{(Dé)sérialisation en JSON}
+
+Nous avons tout d’abord implémenté nous même un système de conversion des objets en JSON mais de nombreuses erreurs nous ont poussés à utiliser la librairie Jackson. Ces problèmes nous ont fait perdre beaucoup de temps mais nous ont aussi obligés à repenser l’architecture du serveur dans son intégralité. Cette nouvelle architecture est plus robuste, modulaire et standardisée.
 
 
 \section{Ce que nous n'avons pas eu le temps d'implémenter}
 
- En raison d'un manque de temps, certaines fonctionnalités que 
-nous avions prévu pour l'application lors de l'analyse n'ont pas pu être implémentées. 
-Nous les rappelons ici en expliquant brièvement ce qu'elles auraient du apporter 
-à Agetac.
-
-\subsection{Authentification}
-
-Actuellement, il n'y a pas de système d'authentification efficace 
-en place pour ce qui est de l'accès à l'application sur les tablettes. Dans le 
-futur, les agents possédant une tablette devront s'authentifier pour accéder 
-aux interventions ou en créer. Cela permettra de sécuriser les informations et 
-de mettre en place un système d'autorisation pour les différentes fonctionnalités 
-de l'application.
+En raison d’un manque de temps, certaines fonctionnalités que nous avions prévu pour l’application lors de l’analyse n’ont pas pu être implémentées. Nous les rappelons ici en expliquant brièvement ce qu’elles auraient du apporter à Agetac.
 
 \subsection{Gestion des agents}
 
-Suite à une décision prise en accord avec le client, il n'y 
-a pas de système de gestion des personnes dans la version actuelle. Les pompiers 
-présents sur l'intervention sont identifiés par le véhicule auquel ils sont 
-attachés.
+Suite à une décision prise en accord avec le client, il n’y a pas de système de gestion des personnes dans la version actuelle. Les pompiers présents sur l’intervention sont identifiés par le véhicule auquel ils sont attachés. Si l’application doit prendre en compte cet aspect, ce ne sera que bien plus tard.
 
 \subsection{Hiérarchie}
 
-A tout moment, un utilisateur pourra consulter la hiérarchie 
-de l'intervention indiquant le commandement, les groupes et les canaux radios par 
-lesquels les différents chefs pourront être contactés. Étant donné que la 
-gestion des agents n'a pas encore été mise en place, cette fenêtre n'est pas 
-encore disponible.
+A tout moment, un utilisateur pourra consulter la hiérarchie de l’intervention indiquant le commandement, les groupes et les canaux radios par lesquels les différents chefs pourront être contactés. Étant donné que la gestion des agents n’a pas encore été mise en place, cette fenêtre n’est pas encore disponible.
 
 \subsection{Sectorisation}
 
-Du fait de quelques problèmes rencontrés avec la SITAC, nous 
-n'avons pas eu le temps de mettre en place le système de sectorisation fonctionnelle 
-et géographique. Celui-ci devra permettre au COS de regrouper les véhicules par 
-secteurs, suivant les zones de dangers et les types de véhicules impliqués.
+Du fait de quelques problèmes rencontrés avec la SITAC, nous n’avons pas eu le temps de mettre en place le système de sectorisation fonctionnelle et géographique. Celui-ci devra permettre au COS de regrouper les véhicules par secteurs, suivant les zones de dangers et les types de véhicules impliqués.
 
 \subsection{Groupe }
 
-Le regroupement des véhicules sous un même commandement n'est 
-pas encore mis en oeuvre. A terme, il permettra au COS de regrouper des petits 
-groupes de véhicules au sein d'un groupe, afin de faciliter les déplacements 
-et la transmission des ordres.
+Le regroupement des véhicules sous un même commandement n’est pas encore mis en oeuvre. A terme, il permettra au COS de regrouper des petits groupes de véhicules au sein d’un groupe, afin de faciliter les déplacements et la transmission des ordres.
 
 \subsection{Historique}
 
-Une fonctionnalité qui sera à implémenter est la notion d'historique 
-d'intervention. Toutes les interventions qui se déroulent avec l'aide d'Agetac 
-seront enregistrées étapes par étapes. Cet historique aura un intérêt particulier 
-pour la formation des Officiers Sapeurs-pompiers et leur permettra de revoir pas 
-à pas le déroulement d'une intervention.
+Une fonctionnalité qui sera à implémenter est la notion d’historique d’intervention. Toutes les interventions qui se déroulent avec l’aide d’AGETAC seront enregistrées étapes par étapes. Cet historique aura un intérêt particulier pour la formation des Officiers Sapeurs-pompiers et leurs permettra de revoir pas à pas le déroulement d’une intervention.
 
-Associé à cet historique, un outil de simulation d'intervention 
-pourra être ajouté, toujours dans le cadre de la formation.
+Associé à cet historique, un outil de simulation d’intervention pourra être ajouté, toujours dans le cadre de la formation.
 
 \subsection{Tableau des victimes}
 
-L'application devra disposer d'un tableau recensant les victimes 
-d'une intervention en fonction de leur état. Ce tableau sera visualisable par 
-les agents possédant une tablette et sera modifiable par le COS.
+L’application devra disposer d’un tableau recensant les victimes d’une intervention en fonction de leur état. Ce tableau sera visualisable par les agents possédant une tablette et sera modifiable par le COS.
 
 \subsection{Réception des Messages du CODIS sur la tablette.}
 
+L’envoi de messages par le CODIS sur les tablettes est possible actuellement cependant aucune distinction n’est faites entre un message qui à été envoyé de la tablette vers le CODIS et un message qui à été envoyé du CODIS vers la tablette. De plus nous avions prévu de mettre en place un système de notification lors de la réception d’un message de la part du CODIS, ceci n’a pas pu être implémenté à temps.
+
+
+\section{Conclusion}
+Pour conclure, on constate que nous n’avons pas eu de problèmes particuliers lors du déroulement du projet, excepté le problème de (dé)sérialisation JSON qui nous a obligé à repenser toute l’architecture du serveur. Le fait d’être aidé par une équipe de recherche nous a permis d’éviter de prendre trop de retard sur certains points difficiles. C’est un projet d’envergure et faute de temps, bien des fonctionnalités restent à implémenter. Cependant, les bases ont été posées et le projet va continuer à être développé pour devenir au final un outil important pour l’amélioration des interventions de pompiers.
 \end{document}
